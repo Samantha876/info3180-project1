@@ -7,6 +7,7 @@ This file creates your application.
 
 from app import app
 from flask import render_template, request, redirect, url_for
+from .forms import PropertyForm
 
 
 ###
@@ -23,6 +24,22 @@ def home():
 def about():
     """Render the website's about page."""
     return render_template('about.html', name="Mary Jane")
+
+@app.route('/property',methods=['POST', 'GET'])
+def property():
+    """For displaying the form to add a new property."""
+    form=PropertyForm()
+    return render_template('property.html', form=form)
+
+@app.route('/properties')
+def properties():
+    """For displaying a list of all properties in the database."""
+    return render_template('properties.html')
+
+@app.route('/property/<propertyid>')
+def propertyid():
+    """For viewing an individual property by the specific property id. """
+    return render_template('propertyid.html')
 
 
 ###

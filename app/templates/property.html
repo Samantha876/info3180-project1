@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <h2 class="page-header">Property Form</h2>
+    <hr>
+    <form action="{{ url_for('property') }}" method="post" enctype="multipart/form-data">
+
+        {{ form.csrf_token }}
+
+        <div>
+            {{ form.title.label }}<span class='req'> (Required)</span>
+            {{ form.title(class="form-control")}}
+        </div>
+        
+        <br>
+        
+        <div>
+            {{ form.bedrooms.label }}<span class='req'> (Required)</span>
+            {{ form.bedrooms(class="form-control") }}
+        </div>
+        
+        <br>
+
+        <div>
+            {{ form.bathrooms.label }}<span class='req'> (Required)</span>
+            {{ form.bathrooms(class="form-control")}}
+        </div>
+        
+        <br>
+
+        <div>
+            {{ form.location.label }}<span class='req'> (Required)</span>
+            {{ form.location(class="form-control")}}
+        </div>
+
+        <br>
+
+        <div>
+            {{ form.price.label }}<span class='req'> (Required)</span>
+            {{ form.price(class="form-control")}}
+        </div>
+
+        <br>
+
+        <div>
+            {{ form.type.label }}<span class='req'> (Required)</span>
+            {{ form.type(class="form-control")}}
+        </div>
+
+        <br>
+
+        <div>
+            {{ form.desc.label }}<span class='req'> (Required)</span>
+            {{ form.desc(class="form-control")}}
+        </div>
+
+        <br>
+
+        <div>
+            {{ form.photo.label }}<span class='req'> (Required)</span>
+            {{ form.photo(class="form-control")}}
+        </div>
+        
+        <br>
+
+        <button type="submit" class="sub_btn">Submit </button>
+        
+    </form>
+{% endblock %}
