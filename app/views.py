@@ -49,10 +49,11 @@ def property():
         property= PropertyMod(title,bedrooms,bathrooms,location,price,type,desc,filename)
         db.session.add(property)
         db.session.commit()
+        flash('Property was successfully added','success')
+        return redirect(url_for('properties'))
         
-
     return render_template('property.html', form=form)
-    flash('Property was successfully added', 'success')
+
     
 @app.route('/upload/<filename>')
 def get_image(filename):
