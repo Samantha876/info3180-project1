@@ -16,7 +16,7 @@
             <img class="images" src= "{{ url_for('get_image', filename=property.filename) }}">
             <div class='card-body'>
                 <h5>{{property.title}}</h5>
-                <p>{{property.location}}</p>             
+                <p class="greytext">{{property.location}}</p>             
                 <span class="price">{{property.price}}</span>
                 <a href="{{ url_for('propertyid', propertyid=property.id) }}" class="btn btn-info">View Property</a>
             </div>
