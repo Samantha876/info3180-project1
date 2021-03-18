@@ -8,9 +8,13 @@
         <div class="card">
             <img class="images" src= "{{ url_for('get_image', filename=propertyid.filename) }}">
             <div class='card-body'>
-                <h5>{{propertyid.title}}</h5>                
+                <h5>{{propertyid.title}}</h5> 
+                <span class="price">{{propertyid.price}}</span>
+                <span class="type">{{propertyid.type}}</span> 
+                <!--              
                 <p>{{propertyid.price}}</p>
                 <p>{{propertyid.type}}</p>
+                -->
                 <p>{{propertyid.desc}}</p>
                 <p>{{propertyid.bedrooms}} Bedrooms</p>
                 <p>{{propertyid.bathrooms}} Bathrooms</p>

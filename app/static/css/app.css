@@ -1,3 +1,32 @@
 body {
     padding-top: 50px;
 }
+
+.card{
+    width:20rem;
+    margin:8px;
+}
+
+.price{
+    background-color: #2e92fd;
+    border-radius:10%;
+    color:white;
+}
+.type{
+    background-color: #e1ad01 ;
+    border-radius:10%;
+    color:white;
+}
+
+a{
+    width:100%;
+}
+
+
+nav{
+    background-color:  teal;
+}
+
+.card-body p{
+    color:grey;
+}
