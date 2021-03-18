@@ -1,6 +1,22 @@
 {% extends "base.html" %}
-
 {% block main %}
+<br>
+<h1 class='page-header'>Property</h1>
+<br>
+{% include 'flash_messages.html' %}
 
+        <div class="card">
+            <img class="images" src= "{{ url_for('get_image', filename=propertyid.filename) }}">
+            <div class='card-body'>
+                <h5>{{propertyid.title}}</h5>                
+                <p>{{propertyid.price}}</p>
+                <p>{{propertyid.type}}</p>
+                <p>{{propertyid.desc}}</p>
+                <p>{{propertyid.bedrooms}} Bedrooms</p>
+                <p>{{propertyid.bathrooms}} Bathrooms</p>
+                <p>{{propertyid.location}}</p>
+            <button type="button" class="btn btn-info">Email Realtor</button>
+            </div>
+        </div>
 
 {% endblock %}

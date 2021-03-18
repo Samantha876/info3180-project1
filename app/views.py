@@ -4,10 +4,14 @@ Jinja2 Documentation:    http://jinja.pocoo.org/2/documentation/
 Werkzeug Documentation:  http://werkzeug.pocoo.org/documentation/
 This file creates your application.
 """
-
+import os
 from app import app
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, flash
 from .forms import PropertyForm
+from werkzeug.utils import secure_filename
+from app.models import PropertyMod
+from app import db
+from flask.helpers import send_from_directory
 
 
 ###
@@ -29,17 +33,43 @@ def about():
 def property():
     """For displaying the form to add a new property."""
     form=PropertyForm()
-    return render_template('property.html', form=form)
+    if request.method == 'POST' and form.validate_on_submit():
+        title= form.title.data
+        bedrooms=form.bedrooms.data
+        bathrooms= form.bathrooms.data
+        location= form.location.data
+        price= form.price.data
+        type= form.type.data
+        desc= form.desc.data
 
+        photo= form.photo.data
+        filename= secure_filename(photo.filename)
+        photo.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
+        property= PropertyMod(title,bedrooms,bathrooms,location,price,type,desc,filename)
+        db.session.add(property)
+        db.session.commit()
+        
+
+    return render_template('property.html', form=form)
+    flash('Property was successfully added', 'success')
+    
+@app.route('/upload/<filename>')
+def get_image(filename):
+    root_dir=os.getcwd()
+    return send_from_directory(os.path.join(root_dir,app.config['UPLOAD_FOLDER']),filename)
+    
 @app.route('/properties')
 def properties():
     """For displaying a list of all properties in the database."""
-    return render_template('properties.html')
+    properties=PropertyMod.query.all()
+    return render_template('properties.html',properties=properties)
 
 @app.route('/property/<propertyid>')
-def propertyid():
+def propertyid(propertyid):
     """For viewing an individual property by the specific property id. """
-    return render_template('propertyid.html')
+    propertyid=PropertyMod.query.get(propertyid)
+    return render_template('propertyid.html', propertyid=propertyid)
 
 
 ###

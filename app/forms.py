@@ -6,13 +6,13 @@ from wtforms.validators import InputRequired, Email
 
 
 class PropertyForm(FlaskForm):
-    title=StringField('Title', validators=[InputRequired()])
-    bedrooms=StringField('Bedrooms', validators=[InputRequired()])
-    bathrooms=StringField('Bathrooms', validators=[InputRequired()])
-    location=StringField('Location', validators=[InputRequired()])
-    price=StringField('Price', validators=[InputRequired()])
-    
-    type = SelectField('House/ Apartment', choices=[('house', 'House'), ('apartment', 'Apartment')])
+    title=StringField('Property Title', validators=[InputRequired()])
     desc=TextAreaField('Description',validators=[InputRequired()])
-    photo= FileField('Photo',validators=[FileRequired(), FileAllowed(['jpg','png'])])
+    bedrooms=StringField('No. of Bedrooms', validators=[InputRequired()])
+    bathrooms=StringField('No. of Bathrooms', validators=[InputRequired()])
+    price=StringField('Price', validators=[InputRequired()])
+    type = SelectField('House/ Apartment', choices=[('House', 'House'), ('Apartment', 'Apartment')])
+    location=StringField('Location', validators=[InputRequired()])     
+    photo= FileField('Photo',validators=[FileRequired()])
+
     
