@@ -11,6 +11,7 @@ body {
     background-color: #2e92fd;
     border-radius:10%;
     color:white;
+    max-width: max-content;
 }
 .type{
     background-color: #e1ad01 ;
